@@ -11,7 +11,8 @@ import { readContacts } from '../utils/readContacts.js';
 export const getAllContacts = async () => {
   try {
     const contacts = await readContacts();
-    console.log('All contacts:', contacts);
+    console.log('All contacts:');
+    console.table(contacts);
     return contacts;
   } catch (error) {
     console.error('Error reading contacts:', error.message);
@@ -19,9 +20,6 @@ export const getAllContacts = async () => {
 };
 
 getAllContacts();
-
-
-
 
 
 

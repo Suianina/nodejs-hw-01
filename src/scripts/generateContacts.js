@@ -9,16 +9,16 @@
 // Перевірити роботу функції можна виконавши команду npm run generate,
 // яка буде виконувати код у файлі src/scripts/generateContacts.js. У файлі src/db/db.json мають відбутися відповідні зміни.
 
+import { readContacts } from '../utils/readContacts.js';
+import { writeContacts } from '../utils/writeContacts.js';
+import { createFakeContact } from '../utils/createFakeContact.js';
 
-import { createFakeContact } from "../utils/createFakeContact.js";
-import { readContacts } from "../utils/readContacts.js";
-import { writeContacts } from "../utils/writeContacts.js";
-
-const generateContacts = async (number) => {
-    const contacts = await readContacts();
-    const newContact = Array(number).fill(0).map(createFakeContact);
-    const result = [...contacts, ...newContact];
-    await writeContacts(result);
+export const generateContacts = async (count = 5) => {
+  const contacts = await readContacts();
+  const newContacts = Array(count).fill(0).map(() => createFakeContact());
+  await writeContacts([...contacts, ...newContacts]);
+  console.log(`${count} contacts successfully added.`);
 };
 
-generateContacts(5);
+generateContacts();
+

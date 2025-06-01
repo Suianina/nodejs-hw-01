@@ -19,7 +19,7 @@ export const countContacts = async () => {
   }
 };
 
-console.log(await countContacts());
-
+const count = await countContacts();
+console.log(`Total contacts: ${count}`);
 
 
